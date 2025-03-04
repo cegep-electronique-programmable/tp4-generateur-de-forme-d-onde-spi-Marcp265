@@ -1,21 +1,21 @@
 /**
-  @Generated PIC10 / PIC12 / PIC16 / PIC18 MCUs Source File
+  SPI Generated Driver API Header File
 
-  @Company:
+  @Company
     Microchip Technology Inc.
 
-  @File Name:
-    mcc.c
+  @File Name
+    spi.h
 
-  @Summary:
-    This is the mcc.c file generated using PIC10 / PIC12 / PIC16 / PIC18 MCUs
+  @Summary
+    This is the generated header file for the SPI driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
 
-  @Description:
-    This header file provides implementations for driver APIs for all modules selected in the GUI.
+  @Description
+    This header file provides APIs for driver for SPI.
     Generation Information :
         Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.8
         Device            :  PIC18F25K80
-        Driver Version    :  2.00
+        Driver Version    :  1.0.0
     The generated drivers are tested against the following:
         Compiler          :  XC8 2.36 and above or later
         MPLAB             :  MPLAB X 6.00
@@ -44,33 +44,30 @@
     SOFTWARE.
 */
 
-#include "mcc.h"
-
-
-void SYSTEM_Initialize(void)
-{
-
-    INTERRUPT_Initialize();
-    SPI_Initialize();
-    PIN_MANAGER_Initialize();
-    OSCILLATOR_Initialize();
-    TMR1_Initialize();
-    EUSART1_Initialize();
-}
-
-void OSCILLATOR_Initialize(void)
-{
-    // SCS FOSC; HFIOFS not stable; IDLEN disabled; IRCF 8MHz_HF; 
-    OSCCON = 0x60;
-    // SOSCGO disabled; MFIOSEL disabled; SOSCDRV Low Power; 
-    OSCCON2 = 0x00;
-    // INTSRC INTRC; PLLEN disabled; TUN 0; 
-    OSCTUNE = 0x00;
-    // ROSEL System Clock(FOSC); ROON disabled; ROSSLP Disabled in Sleep mode; RODIV Fosc; 
-    REFOCON = 0x00;
-}
-
+#ifndef SPI_H
+#define SPI_H
 
 /**
- End of File
+  Section: Included Files
 */
+
+#include <stdio.h>
+#include <stdint.h>
+#include <stdbool.h>
+
+/* SPI interfaces */
+typedef enum { 
+    SPI_DEFAULT
+} spi_modes_t;
+
+void SPI_Initialize(void);
+bool SPI_Open(spi_modes_t spiUniqueConfiguration);
+void SPI_Close(void);
+uint8_t SPI_ExchangeByte(uint8_t data);
+void SPI_ExchangeBlock(void *block, size_t blockSize);
+void SPI_WriteBlock(void *block, size_t blockSize);
+void SPI_ReadBlock(void *block, size_t blockSize);
+void SPI_WriteByte(uint8_t byte);
+uint8_t SPI_ReadByte(void);
+
+#endif //SPI_H
