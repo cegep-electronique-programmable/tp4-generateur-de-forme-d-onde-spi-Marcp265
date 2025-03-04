@@ -1,24 +1,26 @@
 /**
-  @Generated PIC10 / PIC12 / PIC16 / PIC18 MCUs Source File
+  Generated Interrupt Manager Source File
 
   @Company:
     Microchip Technology Inc.
 
   @File Name:
-    mcc.c
+    interrupt_manager.c
 
   @Summary:
-    This is the mcc.c file generated using PIC10 / PIC12 / PIC16 / PIC18 MCUs
+    This is the Interrupt Manager file generated using PIC10 / PIC12 / PIC16 / PIC18 MCUs
 
   @Description:
-    This header file provides implementations for driver APIs for all modules selected in the GUI.
+    This header file provides implementations for global interrupt handling.
+    For individual peripheral handlers please see the peripheral driver for
+    all modules selected in the GUI.
     Generation Information :
         Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.8
         Device            :  PIC18F25K80
-        Driver Version    :  2.00
+        Driver Version    :  2.04
     The generated drivers are tested against the following:
         Compiler          :  XC8 2.36 and above or later
-        MPLAB             :  MPLAB X 6.00
+        MPLAB 	          :  MPLAB X 6.00
 */
 
 /*
@@ -44,33 +46,34 @@
     SOFTWARE.
 */
 
+#include "interrupt_manager.h"
 #include "mcc.h"
 
-
-void SYSTEM_Initialize(void)
+void  INTERRUPT_Initialize (void)
 {
-
-    INTERRUPT_Initialize();
-    SPI_Initialize();
-    PIN_MANAGER_Initialize();
-    OSCILLATOR_Initialize();
-    TMR1_Initialize();
-    EUSART1_Initialize();
+    // Disable Interrupt Priority Vectors (16CXXX Compatibility Mode)
+    RCONbits.IPEN = 0;
 }
 
-void OSCILLATOR_Initialize(void)
+void __interrupt() INTERRUPT_InterruptManager (void)
 {
-    // SCS FOSC; HFIOFS not stable; IDLEN disabled; IRCF 8MHz_HF; 
-    OSCCON = 0x60;
-    // SOSCGO disabled; MFIOSEL disabled; SOSCDRV Low Power; 
-    OSCCON2 = 0x00;
-    // INTSRC INTRC; PLLEN disabled; TUN 0; 
-    OSCTUNE = 0x00;
-    // ROSEL System Clock(FOSC); ROON disabled; ROSSLP Disabled in Sleep mode; RODIV Fosc; 
-    REFOCON = 0x00;
+    // interrupt handler
+    if(INTCONbits.PEIE == 1)
+    {
+        if(PIE1bits.TMR1IE == 1 && PIR1bits.TMR1IF == 1)
+        {
+            TMR1_ISR();
+        } 
+        else
+        {
+            //Unhandled Interrupt
+        }
+    }      
+    else
+    {
+        //Unhandled Interrupt
+    }
 }
-
-
 /**
  End of File
 */
