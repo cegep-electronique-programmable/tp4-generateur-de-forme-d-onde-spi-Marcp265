@@ -39,6 +39,8 @@ uint8_t const tri[MAX] ={
 
 void out_dig(uint8_t x);
 void sinus_60(void);
+void carre_60(void);
+void triangle_60(void);
 void myTimer1_ISR(void);
 
 /*
@@ -65,47 +67,65 @@ void main(void)
         
         
         //Code de test pour valider le fonctionnement du potentiomètre
-        {
-            printf("\n\rEntrer une valeur entre 0 et 255, suivie de [Enter]");
-            valeur = 0;
-            do
-            {
-                do
-                {
-                    lecture = EUSART1_Read();               
-                }
-                while (((lecture < '0') || (lecture > '9')) && (lecture != 0x0d));
-                if ((lecture >= '0') && (lecture <= '9')) 
-                {
-                    valeur = 10 * valeur + lecture - '0';
-                    putchar(lecture);
-                }
-            }
-        
-            while ((lecture != 0x0d) && (valeur < 26)); 
-            tension = (float)5* valeur /256;
-            printf("\n\rValeur = %u tension = %3.2f ", valeur, tension);
-            out_dig(valeur);    // envoi sur potentiometre
-            
-//            switch(EUSART_Read())
+//        {
+//            printf("\n\rEntrer une valeur entre 0 et 255, suivie de [Enter]");
+//            valeur = 0;
+//            do
 //            {
-//                case 's':
-//                    sinus_60;
-//                    break;
-//                case 'c':
-//                    carre_60;
-//                    break;
-//                case 't':
-//                    triangle_60;
-//                    break;
-//                default:
-//                    printf("\n\rNot Onde");
+//                do
+//                {
+//                    lecture = EUSART1_Read();               
+//                }
+//                while (((lecture < '0') || (lecture > '9')) && (lecture != 0x0d));
+//                if ((lecture >= '0') && (lecture <= '9')) 
+//                {
+//                    valeur = 10 * valeur + lecture - '0';
+//                    putchar(lecture);
+//                }
 //            }
+//        
+//            while ((lecture != 0x0d) && (valeur < 26)); 
+//            tension = (float)5* valeur /256;
+//            printf("\n\rValeur = %u tension = %3.2f ", valeur, tension);
+//            out_dig(valeur);    // envoi sur potentiometre
+//        }
             
-        }
+            lecture = EUSART1_Read(); 
+            EUSART1_Write(lecture);
+            switch(lecture)
+            {
+                case 's':
+                    sinus_60();
+                    EUSART1_Write(lecture);
+                    break;
+                case 'c':
+                    carre_60();
+                    EUSART1_Write(lecture);
+                    break;
+                case 't':
+                    triangle_60();
+                    EUSART1_Write(lecture);
+                    break;
+                case '+':
+                    out_dig(sin[MAX]);
+                    break;
+                case '-':
+                    out_dig(sin[MAX]);
+                    break;
+                default:
+                    printf("\n\rOnde Non Valide");
+            }
         
         //Code de test pour générer une onde sinusoidale
         //sinus_60(); //change voltage
+            
+        //pour 20hz
+            //1/20 = 0.05sec
+            //0.05/60 = 0.83ms
+            
+        //if()flaginterupt1
+            //out_idg
+            //flaginterupt = 0
         
     }
 
@@ -141,6 +161,27 @@ void sinus_60(void) {
         } 
 }
 
+
+void carre_60(void) {
+    uint8_t i;
+    while(1) {
+        for (i=0;i<MAX;i++) {
+            out_dig(car[i]);
+			__delay_ms(1);
+            }
+        } 
+}
+
+
+void triangle_60(void) {
+    uint8_t i;
+    while(1) {
+        for (i=0;i<MAX;i++) {
+            out_dig(tri[i]);
+			__delay_ms(1);
+            }
+        } 
+}
 
 //----------------------------------------------------------------
 //  Transmission d'une donnee a la sortie du pot. numerique
