@@ -53,11 +53,11 @@ void main(void)
     
     SYSTEM_Initialize();
     
-    INTERRUPT_GlobalInterruptEnable();
+    //INTERRUPT_GlobalInterruptEnable();
     
-    INTERRUPT_PeripheralInterruptEnable();
+    //INTERRUPT_PeripheralInterruptEnable();
     
-    TMR1_SetInterruptHandler(myTimer1_ISR);
+    //TMR1_SetInterruptHandler(myTimer1_ISR);
 
     SSPCON1bits.SSPEN = 1;
     IO_RA5_SetHigh();
@@ -89,39 +89,40 @@ void main(void)
 //            printf("\n\rValeur = %u tension = %3.2f ", valeur, tension);
 //            out_dig(valeur);    // envoi sur potentiometre
 //        }
-            
+        if(EUSART1_is_rx_ready()){
             lecture = EUSART1_Read(); 
-            EUSART1_Write(lecture);
+        }
+        
+        else{         
             switch(lecture)
             {
                 case 's':
                     sinus_60();
-                    EUSART1_Write(lecture);
+                    printf("\n\rs");
                     break;
                 case 'c':
                     carre_60();
-                    EUSART1_Write(lecture);
+                    printf("\n\rc");
                     break;
                 case 't':
                     triangle_60();
-                    EUSART1_Write(lecture);
+                    printf("\n\rt");
                     break;
-                case '+':
-                    out_dig(sin[MAX]);
-                    break;
-                case '-':
-                    out_dig(sin[MAX]);
-                    break;
+//                case '+':
+//                    out_dig(sin[MAX]);
+//                    break;
+//                case '-':
+//                    out_dig(sin[MAX]);
+//                    break;
                 default:
-                    printf("\n\rOnde Non Valide");
+                    printf("\n\rInput Onde");
+                    break;
             }
-        
+        }
         //Code de test pour générer une onde sinusoidale
         //sinus_60(); //change voltage
             
-        //pour 20hz
-            //1/20 = 0.05sec
-            //0.05/60 = 0.83ms
+
             
         //if()flaginterupt1
             //out_idg
@@ -153,35 +154,30 @@ void myTimer1_ISR(void){
 //----------------------------------------------------------------
 void sinus_60(void) {
     uint8_t i;
-    while(1) {
-        for (i=0;i<MAX;i++) {
-            out_dig(sin[i]);
-			__delay_ms(1);
-            }
-        } 
+    for (i=0;i<MAX;i++) {
+        out_dig(sin[i]);
+        __delay_ms(1);
+    }
 }
 
 
 void carre_60(void) {
     uint8_t i;
-    while(1) {
-        for (i=0;i<MAX;i++) {
-            out_dig(car[i]);
-			__delay_ms(1);
-            }
-        } 
+    for (i=0;i<MAX;i++) {
+        out_dig(car[i]);
+        __delay_ms(1);
+    }
+
 }
 
 
 void triangle_60(void) {
     uint8_t i;
-    while(1) {
-        for (i=0;i<MAX;i++) {
-            out_dig(tri[i]);
-			__delay_ms(1);
-            }
-        } 
-}
+    for (i=0;i<MAX;i++) {
+        out_dig(tri[i]);
+        __delay_ms(1);
+    }
+} 
 
 //----------------------------------------------------------------
 //  Transmission d'une donnee a la sortie du pot. numerique
