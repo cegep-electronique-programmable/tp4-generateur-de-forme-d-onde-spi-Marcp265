@@ -3,7 +3,7 @@
  * Maxime Champagne
  * 3 mars 2022
  * 
- * Modifié par
+ * Modifié par Marc Pilon
  *
  *
  * SPI/main.c
@@ -39,7 +39,9 @@ uint8_t const tri[MAX] ={
 
 void out_dig(uint8_t x);
 void sinus_60(void);
-//void myTimer1_ISR(void);
+void carre_60(void);
+void triangle_60(void);
+void myTimer1_ISR(void);
 
 /*
                          Main application
@@ -64,7 +66,7 @@ void main(void)
     {
         
         
-//        //Code de test pour valider le fonctionnement du potentiomètre
+        //Code de test pour valider le fonctionnement du potentiomètre
 //        {
 //            printf("\n\rEntrer une valeur entre 0 et 255, suivie de [Enter]");
 //            valeur = 0;
@@ -72,9 +74,7 @@ void main(void)
 //            {
 //                do
 //                {
-//                    if(EUSART1_is_rx_ready()){
-//                        lecture = EUSART1_Read();
-//                    }                    
+//                    lecture = EUSART1_Read();               
 //                }
 //                while (((lecture < '0') || (lecture > '9')) && (lecture != 0x0d));
 //                if ((lecture >= '0') && (lecture <= '9')) 
@@ -87,13 +87,46 @@ void main(void)
 //            while ((lecture != 0x0d) && (valeur < 26)); 
 //            tension = (float)5* valeur /256;
 //            printf("\n\rValeur = %u tension = %3.2f ", valeur, tension);
-//            out_dig(valeur);    // envoi sur potentiometre 
-//        } 
+//            out_dig(valeur);    // envoi sur potentiometre
+//        }
+        if(EUSART1_is_rx_ready()){
+            lecture = EUSART1_Read(); 
+        }
         
-        
-        
+        else{         
+            switch(lecture)
+            {
+                case 's':
+                    sinus_60();
+                    printf("\n\rs");
+                    break;
+                case 'c':
+                    carre_60();
+                    printf("\n\rc");
+                    break;
+                case 't':
+                    triangle_60();
+                    printf("\n\rt");
+                    break;
+//                case '+':
+//                    out_dig(sin[MAX]);
+//                    break;
+//                case '-':
+//                    out_dig(sin[MAX]);
+//                    break;
+                default:
+                    printf("\n\rInput Onde");
+                    break;
+            }
+        }
         //Code de test pour générer une onde sinusoidale
-        sinus_60();
+        //sinus_60(); //change voltage
+            
+
+            
+        //if()flaginterupt1
+            //out_idg
+            //flaginterupt = 0
         
     }
 
@@ -103,32 +136,48 @@ void main(void)
 //---------------------------------------------------------------
 // Routine d'interruption du Timer1
 //---------------------------------------------------------------
-//void myTimer1_ISR(void){
-//    static uint8_t i; 
-//    
-//    TMR1_WriteTimer(0x3456);
-//    
-//    out_dig(sin[i]);
-//    
-//    i++;
-//    if (i==MAX){
-//        i=0;
-//    }
-//}
+void myTimer1_ISR(void){
+    static uint8_t i; 
+    
+    TMR1_WriteTimer(0x3456);
+    
+    out_dig(sin[i]);
+    
+    i++;
+    if (i==MAX){
+        i=0;
+    }
+}
     
 //----------------------------------------------------------------
 // Transmission au pot. d'une onde comprenant 60 points par cycle.
 //----------------------------------------------------------------
 void sinus_60(void) {
     uint8_t i;
-    while(1) {
-        for (i=0;i<MAX;i++) {
-            out_dig(sin[i]);
-			__delay_ms(1);
-            }
-        } 
+    for (i=0;i<MAX;i++) {
+        out_dig(sin[i]);
+        __delay_ms(1);
+    }
 }
 
+
+void carre_60(void) {
+    uint8_t i;
+    for (i=0;i<MAX;i++) {
+        out_dig(car[i]);
+        __delay_ms(1);
+    }
+
+}
+
+
+void triangle_60(void) {
+    uint8_t i;
+    for (i=0;i<MAX;i++) {
+        out_dig(tri[i]);
+        __delay_ms(1);
+    }
+} 
 
 //----------------------------------------------------------------
 //  Transmission d'une donnee a la sortie du pot. numerique
