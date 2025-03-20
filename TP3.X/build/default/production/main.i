@@ -20435,16 +20435,25 @@ uint8_t const tri[60] ={
     77,68,60,51,43,34,26,17,9,0};
 
 void out_dig(uint8_t x);
-void sinus_60(void);
+
+
+
 void myTimer1_ISR(void);
+uint8_t i = 0;
+uint16_t periode = 0xEFB9;
+uint8_t flag = 0;
 
 
 
 
 void main(void)
 {
-    uint8_t valeur, lecture;
-    float tension;
+    uint8_t lecture = 'A';
+    uint8_t lettre = 'A';
+    uint8_t freq = 0;
+
+
+
 
     SYSTEM_Initialize();
 
@@ -20459,37 +20468,92 @@ void main(void)
 
     while (1)
     {
-
-
-
+# 99 "main.c"
+        if(flag == 1)
         {
-            printf("\n\rEntrer une valeur entre 0 et 255, suivie de [Enter]");
-            valeur = 0;
-            do
-            {
-                do
+            if(EUSART1_is_rx_ready()){
+                lecture = EUSART1_Read();
+                if(lecture == '+')
                 {
-                    lecture = EUSART1_Read();
+                    freq++;
+                    if(freq >= 4)
+                    {
+                        freq = 4;
+                    }
                 }
-                while (((lecture < '0') || (lecture > '9')) && (lecture != 0x0d));
-                if ((lecture >= '0') && (lecture <= '9'))
+                else if(lecture == '-')
                 {
-                    valeur = 10 * valeur + lecture - '0';
-                    fputc(lecture,((void*)0));
+                    freq--;
+                    if(freq <= 0)
+                    {
+                        freq = 0;
+                    }
+                }
+                else
+                {
+                    lettre=lecture;
+                }
+                switch(freq)
+                {
+                    case 0:
+                        periode=0xEFB9;
+                        printf("\n\r20Hz");
+                        flag = 0;
+                        break;
+                    case 1:
+                        periode=0xF7DD;
+                        printf("\n\r40Hz");
+                        flag = 0;
+                        break;
+                    case 2:
+                        periode=0xFA90;
+                        printf("\n\r60Hz");
+                        flag = 0;
+                        break;
+                    case 3:
+                        periode=0xFBEE;
+                        printf("\n\r80Hz");
+                        flag = 0;
+                        break;
+                    case 4:
+                        periode=0xFCBF;
+                        printf("\n\r100Hz");
+                        flag = 0;
+                        break;
+                    default:
+
+                        break;
                 }
             }
 
-            while ((lecture != 0x0d) && (valeur < 26));
-            tension = (float)5* valeur /256;
-            printf("\n\rValeur = %u tension = %3.2f ", valeur, tension);
-            out_dig(valeur);
+            else{
+                switch(lettre)
+                {
+                    case 's':
+
+                        out_dig(sin[i]);
+                        printf("\n\rs");
+                        flag = 0;
+                        break;
+                    case 'c':
+
+                        out_dig(car[i]);
+                        printf("\n\rc");
+                        flag = 0;
+                        break;
+                    case 't':
+
+                        out_dig(tri[i]);
+                        printf("\n\rt");
+                        flag = 0;
+                        break;
+                    default:
+                        printf("\n\rInput onde avec s,c,t");
+                        break;
+                }
+            }
         }
-
-
-
-
-
-
+# 193 "main.c"
     }
 
 
@@ -20499,35 +20563,18 @@ void main(void)
 
 
 void myTimer1_ISR(void){
-    static uint8_t i;
 
-    TMR1_WriteTimer(0x3456);
 
-    out_dig(sin[i]);
+    TMR1_WriteTimer(periode);
 
+
+    flag = 1;
     i++;
     if (i==60){
         i=0;
     }
 }
-
-
-
-
-void sinus_60(void) {
-    uint8_t i;
-    while(1) {
-        for (i=0;i<60;i++) {
-            out_dig(sin[i]);
-   _delay((unsigned long)((1)*(20000000/4000.0)));
-            }
-        }
-}
-
-
-
-
-
+# 247 "main.c"
 void out_dig(uint8_t x)
 {
  do { LATAbits.LATA5 = 0; } while(0);

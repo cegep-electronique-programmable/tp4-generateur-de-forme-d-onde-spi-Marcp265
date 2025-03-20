@@ -38,26 +38,33 @@ uint8_t const tri[MAX] ={
 			 77,68,60,51,43,34,26,17,9,0};
 
 void out_dig(uint8_t x);
-void sinus_60(void);
-void carre_60(void);
-void triangle_60(void);
+//void sinus_60(void);
+//void carre_60(void);
+//void triangle_60(void);
 void myTimer1_ISR(void);
+uint8_t i = 0; //global counter
+uint16_t periode = 0xEFB9;
+uint8_t flag = 0;
 
 /*
                          Main application
  */
 void main(void)
 {
-    uint8_t valeur, lecture;
-    float tension;
+    uint8_t lecture = 'A';
+    uint8_t lettre = 'A';
+    uint8_t freq = 0;
+    
+    
+    //float tension;
     
     SYSTEM_Initialize();
     
-    //INTERRUPT_GlobalInterruptEnable();
+    INTERRUPT_GlobalInterruptEnable();
     
-    //INTERRUPT_PeripheralInterruptEnable();
+    INTERRUPT_PeripheralInterruptEnable();
     
-    //TMR1_SetInterruptHandler(myTimer1_ISR);
+    TMR1_SetInterruptHandler(myTimer1_ISR);
 
     SSPCON1bits.SSPEN = 1;
     IO_RA5_SetHigh();
@@ -89,43 +96,98 @@ void main(void)
 //            printf("\n\rValeur = %u tension = %3.2f ", valeur, tension);
 //            out_dig(valeur);    // envoi sur potentiometre
 //        }
-        if(EUSART1_is_rx_ready()){
-            lecture = EUSART1_Read(); 
-        }
-        
-        else{         
-            switch(lecture)
-            {
-                case 's':
-                    sinus_60();
-                    printf("\n\rs");
-                    break;
-                case 'c':
-                    carre_60();
-                    printf("\n\rc");
-                    break;
-                case 't':
-                    triangle_60();
-                    printf("\n\rt");
-                    break;
-//                case '+':
-//                    out_dig(sin[MAX]);
-//                    break;
-//                case '-':
-//                    out_dig(sin[MAX]);
-//                    break;
-                default:
-                    printf("\n\rInput Onde");
-                    break;
+        if(flag == 1) // pour faire a chaque interupt
+        {
+            if(EUSART1_is_rx_ready()){
+                lecture = EUSART1_Read();
+                if(lecture == '+')
+                {
+                    freq++;
+                    if(freq >= 4)
+                    {
+                        freq = 4;
+                    }
+                }
+                else if(lecture == '-')
+                {
+                    freq--;
+                    if(freq <= 0)
+                    {
+                        freq = 0;
+                    }
+                }
+                else
+                {
+                    lettre=lecture;
+                }
+                switch(freq)
+                {
+                    case 0:
+                        periode=0xEFB9; //0.833ms 
+                        printf("\n\r20Hz");
+                        flag = 0;
+                        break;
+                    case 1:
+                        periode=0xF7DD; //0.417ms 
+                        printf("\n\r40Hz");
+                        flag = 0;
+                        break;
+                    case 2:
+                        periode=0xFA90; //0.278ms 
+                        printf("\n\r60Hz");
+                        flag = 0;
+                        break;
+                    case 3:
+                        periode=0xFBEE; //0.208ms 
+                        printf("\n\r80Hz");
+                        flag = 0;
+                        break;
+                    case 4:
+                        periode=0xFCBF; //0.167ms
+                        printf("\n\r100Hz");
+                        flag = 0;
+                        break;
+                    default:
+
+                        break;
+                }
+            }
+
+            else{         
+                switch(lettre)
+                {
+                    case 's':
+                        //sinus_60();
+                        out_dig(sin[i]); //chaque valeur du sin
+                        printf("\n\rs");
+                        flag = 0;
+                        break;
+                    case 'c':
+                        //carre_60();
+                        out_dig(car[i]); //chaque valeur du carre
+                        printf("\n\rc");
+                        flag = 0;
+                        break;
+                    case 't':
+                        //triangle_60();
+                        out_dig(tri[i]); //chaque valeur du triangle
+                        printf("\n\rt");
+                        flag = 0;
+                        break;
+                    default:
+                        printf("\n\rInput onde avec s,c,t");
+                        break;
+                }
             }
         }
+        
         //Code de test pour générer une onde sinusoidale
         //sinus_60(); //change voltage
             
 
             
         //if()flaginterupt1
-            //out_idg
+            //out_dig
             //flaginterupt = 0
         
     }
@@ -137,12 +199,12 @@ void main(void)
 // Routine d'interruption du Timer1
 //---------------------------------------------------------------
 void myTimer1_ISR(void){
-    static uint8_t i; 
+    //static uint8_t i; 
     
-    TMR1_WriteTimer(0x3456);
+    TMR1_WriteTimer(periode);
     
-    out_dig(sin[i]);
-    
+    //out_dig(sin[i]);
+    flag = 1;
     i++;
     if (i==MAX){
         i=0;
@@ -152,32 +214,32 @@ void myTimer1_ISR(void){
 //----------------------------------------------------------------
 // Transmission au pot. d'une onde comprenant 60 points par cycle.
 //----------------------------------------------------------------
-void sinus_60(void) {
-    uint8_t i;
-    for (i=0;i<MAX;i++) {
-        out_dig(sin[i]);
-        __delay_ms(1);
-    }
-}
-
-
-void carre_60(void) {
-    uint8_t i;
-    for (i=0;i<MAX;i++) {
-        out_dig(car[i]);
-        __delay_ms(1);
-    }
-
-}
-
-
-void triangle_60(void) {
-    uint8_t i;
-    for (i=0;i<MAX;i++) {
-        out_dig(tri[i]);
-        __delay_ms(1);
-    }
-} 
+//void sinus_60(void) {
+//    uint8_t i;
+//    for (i=0;i<MAX;i++) {
+//        out_dig(sin[i]);
+//        __delay_ms(1);
+//    }
+//}
+//
+//
+//void carre_60(void) {
+//    uint8_t i;
+//    for (i=0;i<MAX;i++) {
+//        out_dig(car[i]);
+//        __delay_ms(1);
+//    }
+//
+//}
+//
+//
+//void triangle_60(void) {
+//    uint8_t i;
+//    for (i=0;i<MAX;i++) {
+//        out_dig(tri[i]);
+//        __delay_ms(1);
+//    }
+//} 
 
 //----------------------------------------------------------------
 //  Transmission d'une donnee a la sortie du pot. numerique

@@ -1,4 +1,4 @@
-# 1 "mcc_generated_files/tmr1.c"
+# 1 "mcc_generated_files/pin_manager.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,8 +6,10 @@
 # 1 "<built-in>" 2
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.45\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "mcc_generated_files/tmr1.c" 2
-# 51 "mcc_generated_files/tmr1.c"
+# 1 "mcc_generated_files/pin_manager.c" 2
+# 49 "mcc_generated_files/pin_manager.c"
+# 1 "mcc_generated_files/pin_manager.h" 1
+# 54 "mcc_generated_files/pin_manager.h"
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.45\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files\\Microchip\\xc8\\v2.45\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -20146,161 +20148,50 @@ __attribute__((__unsupported__("The " "Write_b_eep" " routine is no longer suppo
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 33 "C:\\Program Files\\Microchip\\xc8\\v2.45\\pic\\include\\xc.h" 2 3
-# 51 "mcc_generated_files/tmr1.c" 2
-
-# 1 "mcc_generated_files/tmr1.h" 1
-# 54 "mcc_generated_files/tmr1.h"
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.45\\pic\\include\\c99\\stdbool.h" 1 3
-# 54 "mcc_generated_files/tmr1.h" 2
-# 100 "mcc_generated_files/tmr1.h"
-void TMR1_Initialize(void);
-# 129 "mcc_generated_files/tmr1.h"
-void TMR1_StartTimer(void);
-# 161 "mcc_generated_files/tmr1.h"
-void TMR1_StopTimer(void);
-# 196 "mcc_generated_files/tmr1.h"
-uint16_t TMR1_ReadTimer(void);
-# 235 "mcc_generated_files/tmr1.h"
-void TMR1_WriteTimer(uint16_t timerVal);
-# 271 "mcc_generated_files/tmr1.h"
-void TMR1_Reload(void);
-# 310 "mcc_generated_files/tmr1.h"
-void TMR1_StartSinglePulseAcquisition(void);
-# 349 "mcc_generated_files/tmr1.h"
-uint8_t TMR1_CheckGateValueStatus(void);
-# 367 "mcc_generated_files/tmr1.h"
-void TMR1_ISR(void);
-# 385 "mcc_generated_files/tmr1.h"
- void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
-# 403 "mcc_generated_files/tmr1.h"
-extern void (*TMR1_InterruptHandler)(void);
-# 421 "mcc_generated_files/tmr1.h"
-void TMR1_DefaultInterruptHandler(void);
-# 52 "mcc_generated_files/tmr1.c" 2
+# 54 "mcc_generated_files/pin_manager.h" 2
+# 132 "mcc_generated_files/pin_manager.h"
+void PIN_MANAGER_Initialize (void);
+# 144 "mcc_generated_files/pin_manager.h"
+void PIN_MANAGER_IOC(void);
+# 49 "mcc_generated_files/pin_manager.c" 2
 
 
 
 
 
-volatile uint16_t timer1ReloadVal;
-void (*TMR1_InterruptHandler)(void);
 
-
-
-
-
-void TMR1_Initialize(void)
+void PIN_MANAGER_Initialize(void)
 {
 
 
 
-    T1GCON = 0x00;
+    LATA = 0x00;
+    LATB = 0x00;
+    LATC = 0x00;
 
 
-    TMR1H = 0xEF;
 
 
-    TMR1L = 0xB9;
+    TRISA = 0xCF;
+    TRISB = 0xFF;
+    TRISC = 0x97;
 
 
-    PIR1bits.TMR1IF = 0;
 
 
-    timer1ReloadVal=(uint16_t)((TMR1H << 8) | TMR1L);
+    ANCON0 = 0x1F;
+    ANCON1 = 0x07;
 
 
-    PIE1bits.TMR1IE = 1;
 
 
-    TMR1_SetInterruptHandler(TMR1_DefaultInterruptHandler);
-
-
-    T1CON = 0x01;
+    WPUB = 0x00;
+    INTCON2bits.nRBPU = 1;
+# 90 "mcc_generated_files/pin_manager.c"
 }
 
-void TMR1_StartTimer(void)
+void PIN_MANAGER_IOC(void)
 {
 
-    T1CONbits.TMR1ON = 1;
-}
-
-void TMR1_StopTimer(void)
-{
-
-    T1CONbits.TMR1ON = 0;
-}
-
-uint16_t TMR1_ReadTimer(void)
-{
-    uint16_t readVal;
-    uint8_t readValHigh;
-    uint8_t readValLow;
-
-
-    readValLow = TMR1L;
-    readValHigh = TMR1H;
-
-    readVal = ((uint16_t)readValHigh << 8) | readValLow;
-
-    return readVal;
-}
-
-void TMR1_WriteTimer(uint16_t timerVal)
-{
-    if (T1CONbits.nT1SYNC == 1)
-    {
-
-        T1CONbits.TMR1ON = 0;
-
-
-        TMR1H = (uint8_t)(timerVal >> 8);
-        TMR1L = (uint8_t)timerVal;
-
-
-        T1CONbits.TMR1ON =1;
-    }
-    else
-    {
-
-        TMR1H = (uint8_t)(timerVal >> 8);
-        TMR1L = (uint8_t)timerVal;
-    }
-}
-
-void TMR1_Reload(void)
-{
-    TMR1_WriteTimer(timer1ReloadVal);
-}
-
-void TMR1_StartSinglePulseAcquisition(void)
-{
-    T1GCONbits.T1GGO = 1;
-}
-
-uint8_t TMR1_CheckGateValueStatus(void)
-{
-    return (T1GCONbits.T1GVAL);
-}
-
-void TMR1_ISR(void)
-{
-
-
-    PIR1bits.TMR1IF = 0;
-    TMR1_WriteTimer(timer1ReloadVal);
-
-    if(TMR1_InterruptHandler)
-    {
-        TMR1_InterruptHandler();
-    }
-}
-
-
-void TMR1_SetInterruptHandler(void (* InterruptHandler)(void)){
-    TMR1_InterruptHandler = InterruptHandler;
-}
-
-void TMR1_DefaultInterruptHandler(void){
-
-
+    INTCONbits.RBIF = 0;
 }

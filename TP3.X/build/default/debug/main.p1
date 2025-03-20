@@ -1664,12 +1664,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _periode
 -> -> 61369 `ui `us
 ]
-"47
-[; ;main.c: 47: uint8_t flag = 0;
-[v _flag `uc ~T0 @X0 1 e ]
-[i _flag
--> -> 0 `i `uc
-]
 [v $root$_main `(v ~T0 @X0 0 e ]
 "52
 [; ;main.c: 52: void main(void)
@@ -1691,375 +1685,338 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 56:     uint8_t freq = 0;
 [v _freq `uc ~T0 @X0 1 a ]
 [e = _freq -> -> 0 `i `uc ]
-"61
-[; ;main.c: 61:     SYSTEM_Initialize();
+"60
+[; ;main.c: 60:     SYSTEM_Initialize();
 [e ( _SYSTEM_Initialize ..  ]
-"63
-[; ;main.c: 63:     (INTCONbits.GIE = 1);
+"62
+[; ;main.c: 62:     (INTCONbits.GIE = 1);
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"65
-[; ;main.c: 65:     (INTCONbits.PEIE = 1);
+"64
+[; ;main.c: 64:     (INTCONbits.PEIE = 1);
 [e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
-"67
-[; ;main.c: 67:     TMR1_SetInterruptHandler(myTimer1_ISR);
+"66
+[; ;main.c: 66:     TMR1_SetInterruptHandler(myTimer1_ISR);
 [e ( _TMR1_SetInterruptHandler (1 &U _myTimer1_ISR ]
-"69
-[; ;main.c: 69:     SSPCON1bits.SSPEN = 1;
+"68
+[; ;main.c: 68:     SSPCON1bits.SSPEN = 1;
 [e = . . _SSPCON1bits 0 2 -> -> 1 `i `uc ]
-"70
-[; ;main.c: 70:     do { LATAbits.LATA5 = 1; } while(0);
+"69
+[; ;main.c: 69:     do { LATAbits.LATA5 = 1; } while(0);
 [e :U 1533 ]
 {
 [e = . . _LATAbits 0 5 -> -> 1 `i `uc ]
 }
 [e :U 1532 ]
-"72
-[; ;main.c: 72:     while (1)
+"71
+[; ;main.c: 71:     while (1)
 [e :U 1535 ]
-"73
-[; ;main.c: 73:     {
+"72
+[; ;main.c: 72:     {
+{
+"98
+[; ;main.c: 98:         if(EUSART1_is_rx_ready()){
+[e $ ! != -> ( _EUSART1_is_rx_ready ..  `i -> 0 `i 1537  ]
 {
 "99
-[; ;main.c: 99:         if(flag == 1)
-[e $ ! == -> _flag `i -> 1 `i 1537  ]
+[; ;main.c: 99:             lecture = EUSART1_Read();
+[e = _lecture ( _EUSART1_Read ..  ]
 "100
-[; ;main.c: 100:         {
-{
+[; ;main.c: 100:             if(lecture == '+')
+[e $ ! == -> _lecture `ui -> 43 `ui 1538  ]
 "101
-[; ;main.c: 101:             if(EUSART1_is_rx_ready()){
-[e $ ! != -> ( _EUSART1_is_rx_ready ..  `i -> 0 `i 1538  ]
+[; ;main.c: 101:             {
 {
 "102
-[; ;main.c: 102:                 lecture = EUSART1_Read();
-[e = _lecture ( _EUSART1_Read ..  ]
+[; ;main.c: 102:                 freq++;
+[e ++ _freq -> -> 1 `i `uc ]
 "103
-[; ;main.c: 103:                 if(lecture == '+')
-[e $ ! == -> _lecture `ui -> 43 `ui 1539  ]
+[; ;main.c: 103:                 if(freq > 4)
+[e $ ! > -> _freq `i -> 4 `i 1539  ]
 "104
 [; ;main.c: 104:                 {
 {
 "105
-[; ;main.c: 105:                     freq++;
-[e ++ _freq -> -> 1 `i `uc ]
-"106
-[; ;main.c: 106:                     if(freq >= 4)
-[e $ ! >= -> _freq `i -> 4 `i 1540  ]
-"107
-[; ;main.c: 107:                     {
-{
-"108
-[; ;main.c: 108:                         freq = 4;
+[; ;main.c: 105:                     freq = 4;
 [e = _freq -> -> 4 `i `uc ]
-"109
-[; ;main.c: 109:                     }
+"106
+[; ;main.c: 106:                 }
 }
-[e :U 1540 ]
-"110
-[; ;main.c: 110:                 }
-}
-[e $U 1541  ]
-"111
-[; ;main.c: 111:                 else if(lecture == '-')
 [e :U 1539 ]
-[e $ ! == -> _lecture `ui -> 45 `ui 1542  ]
+"107
+[; ;main.c: 107:             }
+}
+[e $U 1540  ]
+"108
+[; ;main.c: 108:             else if(lecture == '-')
+[e :U 1538 ]
+[e $ ! == -> _lecture `ui -> 45 `ui 1541  ]
+"109
+[; ;main.c: 109:             {
+{
+"110
+[; ;main.c: 110:                 freq--;
+[e -- _freq -> -> 1 `i `uc ]
+"111
+[; ;main.c: 111:                 if(freq < 0)
+[e $ ! < -> _freq `i -> 0 `i 1542  ]
 "112
 [; ;main.c: 112:                 {
 {
 "113
-[; ;main.c: 113:                     freq--;
-[e -- _freq -> -> 1 `i `uc ]
-"114
-[; ;main.c: 114:                     if(freq <= 0)
-[e $ ! <= -> _freq `i -> 0 `i 1543  ]
-"115
-[; ;main.c: 115:                     {
-{
-"116
-[; ;main.c: 116:                         freq = 0;
+[; ;main.c: 113:                     freq = 0;
 [e = _freq -> -> 0 `i `uc ]
+"114
+[; ;main.c: 114:                 }
+}
+[e :U 1542 ]
+"115
+[; ;main.c: 115:             }
+}
+[e $U 1543  ]
+"116
+[; ;main.c: 116:             else
+[e :U 1541 ]
 "117
-[; ;main.c: 117:                     }
+[; ;main.c: 117:             {
+{
+"118
+[; ;main.c: 118:                 lettre=lecture;
+[e = _lettre _lecture ]
+"119
+[; ;main.c: 119:             }
 }
 [e :U 1543 ]
-"118
-[; ;main.c: 118:                 }
-}
-[e $U 1544  ]
-"119
-[; ;main.c: 119:                 else
-[e :U 1542 ]
+[e :U 1540 ]
 "120
-[; ;main.c: 120:                 {
-{
-"121
-[; ;main.c: 121:                     lettre=lecture;
-[e = _lettre _lecture ]
-"122
-[; ;main.c: 122:                 }
-}
-[e :U 1544 ]
-[e :U 1541 ]
-"123
-[; ;main.c: 123:                 switch(freq)
-[e $U 1546  ]
-"124
-[; ;main.c: 124:                 {
-{
-"125
-[; ;main.c: 125:                     case 0:
-[e :U 1547 ]
-"126
-[; ;main.c: 126:                         periode=0xEFB9;
-[e = _periode -> -> 61369 `ui `us ]
-"127
-[; ;main.c: 127:                         printf("\n\r20Hz");
-[e ( _printf :s 1C ]
-"128
-[; ;main.c: 128:                         flag = 0;
-[e = _flag -> -> 0 `i `uc ]
-"129
-[; ;main.c: 129:                         break;
+[; ;main.c: 120:             switch(freq)
 [e $U 1545  ]
+"121
+[; ;main.c: 121:             {
+{
+"122
+[; ;main.c: 122:                 case 0:
+[e :U 1546 ]
+"123
+[; ;main.c: 123:                     periode=0xEFB9;
+[e = _periode -> -> 61369 `ui `us ]
+"124
+[; ;main.c: 124:                     printf("\n\r20Hz");
+[e ( _printf :s 1C ]
+"125
+[; ;main.c: 125:                     break;
+[e $U 1544  ]
+"126
+[; ;main.c: 126:                 case 1:
+[e :U 1547 ]
+"127
+[; ;main.c: 127:                     periode=0xF7DD;
+[e = _periode -> -> 63453 `ui `us ]
+"128
+[; ;main.c: 128:                     printf("\n\r40Hz");
+[e ( _printf :s 2C ]
+"129
+[; ;main.c: 129:                     break;
+[e $U 1544  ]
 "130
-[; ;main.c: 130:                     case 1:
+[; ;main.c: 130:                 case 2:
 [e :U 1548 ]
 "131
-[; ;main.c: 131:                         periode=0xF7DD;
-[e = _periode -> -> 63453 `ui `us ]
-"132
-[; ;main.c: 132:                         printf("\n\r40Hz");
-[e ( _printf :s 2C ]
-"133
-[; ;main.c: 133:                         flag = 0;
-[e = _flag -> -> 0 `i `uc ]
-"134
-[; ;main.c: 134:                         break;
-[e $U 1545  ]
-"135
-[; ;main.c: 135:                     case 2:
-[e :U 1549 ]
-"136
-[; ;main.c: 136:                         periode=0xFA90;
+[; ;main.c: 131:                     periode=0xFA90;
 [e = _periode -> -> 64144 `ui `us ]
-"137
-[; ;main.c: 137:                         printf("\n\r60Hz");
+"132
+[; ;main.c: 132:                     printf("\n\r60Hz");
 [e ( _printf :s 3C ]
-"138
-[; ;main.c: 138:                         flag = 0;
-[e = _flag -> -> 0 `i `uc ]
-"139
-[; ;main.c: 139:                         break;
-[e $U 1545  ]
-"140
-[; ;main.c: 140:                     case 3:
-[e :U 1550 ]
-"141
-[; ;main.c: 141:                         periode=0xFBEE;
+"133
+[; ;main.c: 133:                     break;
+[e $U 1544  ]
+"134
+[; ;main.c: 134:                 case 3:
+[e :U 1549 ]
+"135
+[; ;main.c: 135:                     periode=0xFBEE;
 [e = _periode -> -> 64494 `ui `us ]
-"142
-[; ;main.c: 142:                         printf("\n\r80Hz");
+"136
+[; ;main.c: 136:                     printf("\n\r80Hz");
 [e ( _printf :s 4C ]
-"143
-[; ;main.c: 143:                         flag = 0;
-[e = _flag -> -> 0 `i `uc ]
-"144
-[; ;main.c: 144:                         break;
-[e $U 1545  ]
-"145
-[; ;main.c: 145:                     case 4:
-[e :U 1551 ]
-"146
-[; ;main.c: 146:                         periode=0xFCBF;
+"137
+[; ;main.c: 137:                     break;
+[e $U 1544  ]
+"138
+[; ;main.c: 138:                 case 4:
+[e :U 1550 ]
+"139
+[; ;main.c: 139:                     periode=0xFCBF;
 [e = _periode -> -> 64703 `ui `us ]
-"147
-[; ;main.c: 147:                         printf("\n\r100Hz");
+"140
+[; ;main.c: 140:                     printf("\n\r100Hz");
 [e ( _printf :s 5C ]
-"148
-[; ;main.c: 148:                         flag = 0;
-[e = _flag -> -> 0 `i `uc ]
-"149
-[; ;main.c: 149:                         break;
-[e $U 1545  ]
-"150
-[; ;main.c: 150:                     default:
-[e :U 1552 ]
-"152
-[; ;main.c: 152:                         break;
-[e $U 1545  ]
-"153
-[; ;main.c: 153:                 }
+"141
+[; ;main.c: 141:                     break;
+[e $U 1544  ]
+"142
+[; ;main.c: 142:                 default:
+[e :U 1551 ]
+"144
+[; ;main.c: 144:                     break;
+[e $U 1544  ]
+"145
+[; ;main.c: 145:             }
 }
-[e $U 1545  ]
-[e :U 1546 ]
-[e [\ -> _freq `i , $ -> 0 `i 1547
- , $ -> 1 `i 1548
- , $ -> 2 `i 1549
- , $ -> 3 `i 1550
- , $ -> 4 `i 1551
- 1552 ]
+[e $U 1544  ]
 [e :U 1545 ]
-"154
-[; ;main.c: 154:             }
+[e [\ -> _freq `i , $ -> 0 `i 1546
+ , $ -> 1 `i 1547
+ , $ -> 2 `i 1548
+ , $ -> 3 `i 1549
+ , $ -> 4 `i 1550
+ 1551 ]
+[e :U 1544 ]
+"146
+[; ;main.c: 146:         }
 }
+[e $U 1552  ]
+"148
+[; ;main.c: 148:         else{
+[e :U 1537 ]
+{
+"149
+[; ;main.c: 149:             switch(lettre)
+[e $U 1554  ]
+"150
+[; ;main.c: 150:             {
+{
+"151
+[; ;main.c: 151:                 case 's':
+[e :U 1555 ]
+"153
+[; ;main.c: 153:                     out_dig(sin[i]);
+[e ( _out_dig (1 *U + &U _sin * -> _i `ux -> -> # *U &U _sin `ui `ux ]
+"154
+[; ;main.c: 154:                     printf("\n\rs");
+[e ( _printf :s 6C ]
+"155
+[; ;main.c: 155:                     break;
 [e $U 1553  ]
 "156
-[; ;main.c: 156:             else{
-[e :U 1538 ]
-{
-"157
-[; ;main.c: 157:                 switch(lettre)
-[e $U 1555  ]
-"158
-[; ;main.c: 158:                 {
-{
-"159
-[; ;main.c: 159:                     case 's':
+[; ;main.c: 156:                 case 'c':
 [e :U 1556 ]
-"161
-[; ;main.c: 161:                         out_dig(sin[i]);
-[e ( _out_dig (1 *U + &U _sin * -> _i `ux -> -> # *U &U _sin `ui `ux ]
-"162
-[; ;main.c: 162:                         printf("\n\rs");
-[e ( _printf :s 6C ]
-"163
-[; ;main.c: 163:                         flag = 0;
-[e = _flag -> -> 0 `i `uc ]
-"164
-[; ;main.c: 164:                         break;
-[e $U 1554  ]
-"165
-[; ;main.c: 165:                     case 'c':
-[e :U 1557 ]
-"167
-[; ;main.c: 167:                         out_dig(car[i]);
+"158
+[; ;main.c: 158:                     out_dig(car[i]);
 [e ( _out_dig (1 *U + &U _car * -> _i `ux -> -> # *U &U _car `ui `ux ]
-"168
-[; ;main.c: 168:                         printf("\n\rc");
+"159
+[; ;main.c: 159:                     printf("\n\rc");
 [e ( _printf :s 7C ]
-"169
-[; ;main.c: 169:                         flag = 0;
-[e = _flag -> -> 0 `i `uc ]
-"170
-[; ;main.c: 170:                         break;
-[e $U 1554  ]
-"171
-[; ;main.c: 171:                     case 't':
-[e :U 1558 ]
-"173
-[; ;main.c: 173:                         out_dig(tri[i]);
+"160
+[; ;main.c: 160:                     break;
+[e $U 1553  ]
+"161
+[; ;main.c: 161:                 case 't':
+[e :U 1557 ]
+"163
+[; ;main.c: 163:                     out_dig(tri[i]);
 [e ( _out_dig (1 *U + &U _tri * -> _i `ux -> -> # *U &U _tri `ui `ux ]
-"174
-[; ;main.c: 174:                         printf("\n\rt");
+"164
+[; ;main.c: 164:                     printf("\n\rt");
 [e ( _printf :s 8C ]
-"175
-[; ;main.c: 175:                         flag = 0;
-[e = _flag -> -> 0 `i `uc ]
-"176
-[; ;main.c: 176:                         break;
-[e $U 1554  ]
-"177
-[; ;main.c: 177:                     default:
-[e :U 1559 ]
-"178
-[; ;main.c: 178:                         printf("\n\rInput onde avec s,c,t");
+"165
+[; ;main.c: 165:                     break;
+[e $U 1553  ]
+"166
+[; ;main.c: 166:                 default:
+[e :U 1558 ]
+"167
+[; ;main.c: 167:                     printf("\n\rInput onde avec s,c,t");
 [e ( _printf :s 9C ]
-"179
-[; ;main.c: 179:                         break;
-[e $U 1554  ]
-"180
-[; ;main.c: 180:                 }
+"168
+[; ;main.c: 168:                     break;
+[e $U 1553  ]
+"169
+[; ;main.c: 169:             }
 }
-[e $U 1554  ]
-[e :U 1555 ]
-[e [\ -> _lettre `i , $ -> -> 115 `ui `i 1556
- , $ -> -> 99 `ui `i 1557
- , $ -> -> 116 `ui `i 1558
- 1559 ]
+[e $U 1553  ]
 [e :U 1554 ]
-"181
-[; ;main.c: 181:             }
-}
+[e [\ -> _lettre `i , $ -> -> 115 `ui `i 1555
+ , $ -> -> 99 `ui `i 1556
+ , $ -> -> 116 `ui `i 1557
+ 1558 ]
 [e :U 1553 ]
-"182
-[; ;main.c: 182:         }
+"170
+[; ;main.c: 170:         }
 }
-[e :U 1537 ]
-"193
-[; ;main.c: 193:     }
+[e :U 1552 ]
+"181
+[; ;main.c: 181:     }
 }
 [e :U 1534 ]
 [e $U 1535  ]
 [e :U 1536 ]
-"196
-[; ;main.c: 196: }
+"184
+[; ;main.c: 184: }
 [e :UE 1530 ]
 }
-"201
-[; ;main.c: 201: void myTimer1_ISR(void){
+"189
+[; ;main.c: 189: void myTimer1_ISR(void){
 [v _myTimer1_ISR `(v ~T0 @X0 1 ef ]
 {
 [e :U _myTimer1_ISR ]
 [f ]
-"204
-[; ;main.c: 204:     TMR1_WriteTimer(periode);
+"192
+[; ;main.c: 192:     TMR1_WriteTimer(periode);
 [e ( _TMR1_WriteTimer (1 _periode ]
-"207
-[; ;main.c: 207:     flag = 1;
-[e = _flag -> -> 1 `i `uc ]
-"208
-[; ;main.c: 208:     i++;
+"196
+[; ;main.c: 196:     i++;
 [e ++ _i -> -> 1 `i `uc ]
-"209
-[; ;main.c: 209:     if (i==60){
-[e $ ! == -> _i `i -> 60 `i 1561  ]
+"197
+[; ;main.c: 197:     if (i==60){
+[e $ ! == -> _i `i -> 60 `i 1560  ]
 {
-"210
-[; ;main.c: 210:         i=0;
+"198
+[; ;main.c: 198:         i=0;
 [e = _i -> -> 0 `i `uc ]
-"211
-[; ;main.c: 211:     }
+"199
+[; ;main.c: 199:     }
 }
-[e :U 1561 ]
-"212
-[; ;main.c: 212: }
-[e :UE 1560 ]
+[e :U 1560 ]
+"200
+[; ;main.c: 200: }
+[e :UE 1559 ]
 }
-"247
-[; ;main.c: 247: void out_dig(uint8_t x)
+"235
+[; ;main.c: 235: void out_dig(uint8_t x)
 [v _out_dig `(v ~T0 @X0 1 ef1`uc ]
-"248
-[; ;main.c: 248: {
+"236
+[; ;main.c: 236: {
 {
 [e :U _out_dig ]
-"247
-[; ;main.c: 247: void out_dig(uint8_t x)
+"235
+[; ;main.c: 235: void out_dig(uint8_t x)
 [v _x `uc ~T0 @X0 1 r1 ]
-"248
-[; ;main.c: 248: {
+"236
+[; ;main.c: 236: {
 [f ]
-"249
-[; ;main.c: 249:  do { LATAbits.LATA5 = 0; } while(0);
-[e :U 1565 ]
+"237
+[; ;main.c: 237:  do { LATAbits.LATA5 = 0; } while(0);
+[e :U 1564 ]
 {
 [e = . . _LATAbits 0 5 -> -> 0 `i `uc ]
 }
-[e :U 1564 ]
-"250
-[; ;main.c: 250:  SPI_ExchangeByte(0x11);
+[e :U 1563 ]
+"238
+[; ;main.c: 238:  SPI_ExchangeByte(0x11);
 [e ( _SPI_ExchangeByte (1 -> -> 17 `i `uc ]
-"251
-[; ;main.c: 251:  SPI_ExchangeByte(x);
+"239
+[; ;main.c: 239:  SPI_ExchangeByte(x);
 [e ( _SPI_ExchangeByte (1 _x ]
-"252
-[; ;main.c: 252:  do { LATAbits.LATA5 = 1; } while(0);
-[e :U 1568 ]
+"240
+[; ;main.c: 240:  do { LATAbits.LATA5 = 1; } while(0);
+[e :U 1567 ]
 {
 [e = . . _LATAbits 0 5 -> -> 1 `i `uc ]
 }
-[e :U 1567 ]
-"254
-[; ;main.c: 254: }
-[e :UE 1562 ]
+[e :U 1566 ]
+"242
+[; ;main.c: 242: }
+[e :UE 1561 ]
 }
 [p f _printf 8388608 ]
 [a 4C 10 13 56 48 72 122 0 ]

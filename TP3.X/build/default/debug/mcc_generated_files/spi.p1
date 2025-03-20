@@ -1,35 +1,29 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[p mainexit ]
-"73 ./mcc_generated_files/mcc.h
-[; ;./mcc_generated_files/mcc.h: 73: void SYSTEM_Initialize(void);
-[v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
-"36655 C:\Program Files\Microchip\xc8\v2.45\pic\include\proc\pic18f25k80.h
-[; ;C:\Program Files\Microchip\xc8\v2.45\pic\include\proc\pic18f25k80.h: 36655:     struct {
-[s S1494 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1494 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
-"36665
-[; ;C:\Program Files\Microchip\xc8\v2.45\pic\include\proc\pic18f25k80.h: 36665:     struct {
-[s S1495 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1495 . . INT0F T0IF . INT0E T0IE PEIE GIE ]
-"36675
-[; ;C:\Program Files\Microchip\xc8\v2.45\pic\include\proc\pic18f25k80.h: 36675:     struct {
-[s S1496 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1496 . . GIEL GIEH ]
-"36654
-[; ;C:\Program Files\Microchip\xc8\v2.45\pic\include\proc\pic18f25k80.h: 36654: typedef union {
-[u S1493 `S1494 1 `S1495 1 `S1496 1 ]
-[n S1493 . . . . ]
-"36681
-[; ;C:\Program Files\Microchip\xc8\v2.45\pic\include\proc\pic18f25k80.h: 36681: extern volatile INTCONbits_t INTCONbits __attribute__((address(0xFF2)));
-[v _INTCONbits `VS1493 ~T0 @X0 0 e@4082 ]
-[v F12565 `(v ~T0 @X0 0 tf ]
-"385 ./mcc_generated_files/tmr1.h
-[; ;./mcc_generated_files/tmr1.h: 385:  void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
-[v _TMR1_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F12565 ]
-"44 main.c
-[; ;main.c: 44: void myTimer1_ISR(void);
-[v _myTimer1_ISR `(v ~T0 @X0 0 ef ]
-"34656 C:\Program Files\Microchip\xc8\v2.45\pic\include\proc\pic18f25k80.h
+"50 mcc_generated_files/spi.c
+[; ;mcc_generated_files/spi.c: 50: typedef struct {
+[s S1528 `uc 1 `uc 1 `uc 1 `uc 1 ]
+[n S1528 . con1 stat add operation ]
+"34720 C:\Program Files\Microchip\xc8\v2.45\pic\include\proc\pic18f25k80.h
+[; ;C:\Program Files\Microchip\xc8\v2.45\pic\include\proc\pic18f25k80.h: 34720: extern volatile unsigned char SSPSTAT __attribute__((address(0xFC7)));
+[v _SSPSTAT `Vuc ~T0 @X0 0 e@4039 ]
+"34650
+[; ;C:\Program Files\Microchip\xc8\v2.45\pic\include\proc\pic18f25k80.h: 34650: extern volatile unsigned char SSPCON1 __attribute__((address(0xFC6)));
+[v _SSPCON1 `Vuc ~T0 @X0 0 e@4038 ]
+"34952
+[; ;C:\Program Files\Microchip\xc8\v2.45\pic\include\proc\pic18f25k80.h: 34952: extern volatile unsigned char SSPADD __attribute__((address(0xFC8)));
+[v _SSPADD `Vuc ~T0 @X0 0 e@4040 ]
+"30770
+[; ;C:\Program Files\Microchip\xc8\v2.45\pic\include\proc\pic18f25k80.h: 30770:     struct {
+[s S1174 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1174 . TRISC0 TRISC1 TRISC2 TRISC3 TRISC4 TRISC5 TRISC6 TRISC7 ]
+"30769
+[; ;C:\Program Files\Microchip\xc8\v2.45\pic\include\proc\pic18f25k80.h: 30769: typedef union {
+[u S1173 `S1174 1 ]
+[n S1173 . . ]
+"30781
+[; ;C:\Program Files\Microchip\xc8\v2.45\pic\include\proc\pic18f25k80.h: 30781: extern volatile TRISCbits_t TRISCbits __attribute__((address(0xF94)));
+[v _TRISCbits `VS1173 ~T0 @X0 0 e@3988 ]
+"34656
 [; ;C:\Program Files\Microchip\xc8\v2.45\pic\include\proc\pic18f25k80.h: 34656:     struct {
 [s S1364 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1364 . SSPM CKP SSPEN SSPOV WCOL ]
@@ -44,39 +38,31 @@ Version 4.0 HI-TECH Software Intermediate Code
 "34670
 [; ;C:\Program Files\Microchip\xc8\v2.45\pic\include\proc\pic18f25k80.h: 34670: extern volatile SSPCON1bits_t SSPCON1bits __attribute__((address(0xFC6)));
 [v _SSPCON1bits `VS1363 ~T0 @X0 0 e@4038 ]
-"30231
-[; ;C:\Program Files\Microchip\xc8\v2.45\pic\include\proc\pic18f25k80.h: 30231:     struct {
-[s S1157 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1157 . LATA0 LATA1 LATA2 LATA3 . LATA5 LATA6 LATA7 ]
-"30241
-[; ;C:\Program Files\Microchip\xc8\v2.45\pic\include\proc\pic18f25k80.h: 30241:     struct {
-[s S1158 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1158 . LA0 LA1 LA2 LA3 . LA5 LA6 LA7 ]
-"30230
-[; ;C:\Program Files\Microchip\xc8\v2.45\pic\include\proc\pic18f25k80.h: 30230: typedef union {
-[u S1156 `S1157 1 `S1158 1 ]
-[n S1156 . . . ]
-"30252
-[; ;C:\Program Files\Microchip\xc8\v2.45\pic\include\proc\pic18f25k80.h: 30252: extern volatile LATAbits_t LATAbits __attribute__((address(0xF89)));
-[v _LATAbits `VS1156 ~T0 @X0 0 e@3977 ]
-"207 ./mcc_generated_files/eusart1.h
-[; ;./mcc_generated_files/eusart1.h: 207: _Bool EUSART1_is_rx_ready(void);
-[v _EUSART1_is_rx_ready `(a ~T0 @X0 0 ef ]
-"322
-[; ;./mcc_generated_files/eusart1.h: 322: uint8_t EUSART1_Read(void);
-[v _EUSART1_Read `(uc ~T0 @X0 0 ef ]
-"117 C:\Program Files\Microchip\xc8\v2.45\pic\include\c99\stdio.h
-[; ;C:\Program Files\Microchip\xc8\v2.45\pic\include\c99\stdio.h: 117: int printf(const char *restrict, ...);
-[v _printf `(i ~T0 @X0 0 ev`*Cuc ]
-"40 main.c
-[; ;main.c: 40: void out_dig(uint8_t x);
-[v _out_dig `(v ~T0 @X0 0 ef1`uc ]
-"235 ./mcc_generated_files/tmr1.h
-[; ;./mcc_generated_files/tmr1.h: 235: void TMR1_WriteTimer(uint16_t timerVal);
-[v _TMR1_WriteTimer `(v ~T0 @X0 0 ef1`us ]
-"66 ./mcc_generated_files/spi.h
-[; ;./mcc_generated_files/spi.h: 66: uint8_t SPI_ExchangeByte(uint8_t data);
-[v _SPI_ExchangeByte `(uc ~T0 @X0 0 ef1`uc ]
+"72 mcc_generated_files/spi.c
+[; ;mcc_generated_files/spi.c: 72: _Bool SPI_Open(spi_modes_t spiUniqueConfiguration)
+[c E358 0 .. ]
+[n E358 . SPI_DEFAULT  ]
+"34555 C:\Program Files\Microchip\xc8\v2.45\pic\include\proc\pic18f25k80.h
+[; ;C:\Program Files\Microchip\xc8\v2.45\pic\include\proc\pic18f25k80.h: 34555: extern volatile unsigned char SSPCON2 __attribute__((address(0xFC5)));
+[v _SSPCON2 `Vuc ~T0 @X0 0 e@4037 ]
+"35022
+[; ;C:\Program Files\Microchip\xc8\v2.45\pic\include\proc\pic18f25k80.h: 35022: extern volatile unsigned char SSPBUF __attribute__((address(0xFC9)));
+[v _SSPBUF `Vuc ~T0 @X0 0 e@4041 ]
+"31148
+[; ;C:\Program Files\Microchip\xc8\v2.45\pic\include\proc\pic18f25k80.h: 31148:     struct {
+[s S1190 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1190 . TMR1IF TMR2IF TMR1GIF SSPIF TX1IF RC1IF ADIF ]
+"31157
+[; ;C:\Program Files\Microchip\xc8\v2.45\pic\include\proc\pic18f25k80.h: 31157:     struct {
+[s S1191 :4 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1191 . . TXIF RCIF ]
+"31147
+[; ;C:\Program Files\Microchip\xc8\v2.45\pic\include\proc\pic18f25k80.h: 31147: typedef union {
+[u S1189 `S1190 1 `S1191 1 ]
+[n S1189 . . . ]
+"31163
+[; ;C:\Program Files\Microchip\xc8\v2.45\pic\include\proc\pic18f25k80.h: 31163: extern volatile PIR1bits_t PIR1bits __attribute__((address(0xF9E)));
+[v _PIR1bits `VS1189 ~T0 @X0 0 e@3998 ]
 "54 C:\Program Files\Microchip\xc8\v2.45\pic\include\proc\pic18f25k80.h
 [; ;C:\Program Files\Microchip\xc8\v2.45\pic\include\proc\pic18f25k80.h: 54: __asm("RXERRCNT equ 0E41h");
 [; <" RXERRCNT equ 0E41h ;# ">
@@ -1451,623 +1437,314 @@ Version 4.0 HI-TECH Software Intermediate Code
 "37211
 [; ;C:\Program Files\Microchip\xc8\v2.45\pic\include\proc\pic18f25k80.h: 37211: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"16 main.c
-[; ;main.c: 16: uint8_t const sin[60] ={
-[v _sin `Cuc ~T0 @X0 -> 60 `i e ]
-[i _sin
+"58 mcc_generated_files/spi.c
+[; ;mcc_generated_files/spi.c: 58: static const spi_configuration_t spi_configuration[] = {
+[v _spi_configuration `CS1528 ~T0 @X0 -> -> 1 `i `ux s ]
+[i _spi_configuration
 :U ..
--> -> 254 `i `uc
--> -> 254 `i `uc
--> -> 252 `i `uc
--> -> 249 `i `uc
--> -> 244 `i `uc
--> -> 238 `i `uc
--> -> 231 `i `uc
--> -> 222 `i `uc
--> -> 213 `i `uc
--> -> 202 `i `uc
--> -> 191 `i `uc
--> -> 179 `i `uc
--> -> 167 `i `uc
--> -> 154 `i `uc
--> -> 141 `i `uc
--> -> 127 `i `uc
--> -> 114 `i `uc
--> -> 101 `i `uc
--> -> 88 `i `uc
--> -> 76 `i `uc
+:U ..
+-> -> 2 `i `uc
 -> -> 64 `i `uc
--> -> 53 `i `uc
--> -> 42 `i `uc
--> -> 33 `i `uc
--> -> 24 `i `uc
--> -> 17 `i `uc
--> -> 11 `i `uc
--> -> 6 `i `uc
--> -> 3 `i `uc
 -> -> 1 `i `uc
 -> -> 0 `i `uc
--> -> 1 `i `uc
--> -> 3 `i `uc
--> -> 6 `i `uc
--> -> 11 `i `uc
--> -> 17 `i `uc
--> -> 24 `i `uc
--> -> 33 `i `uc
--> -> 42 `i `uc
--> -> 53 `i `uc
--> -> 64 `i `uc
--> -> 76 `i `uc
--> -> 88 `i `uc
--> -> 101 `i `uc
--> -> 114 `i `uc
--> -> 128 `i `uc
--> -> 141 `i `uc
--> -> 154 `i `uc
--> -> 167 `i `uc
--> -> 179 `i `uc
--> -> 191 `i `uc
--> -> 202 `i `uc
--> -> 213 `i `uc
--> -> 222 `i `uc
--> -> 231 `i `uc
--> -> 238 `i `uc
--> -> 244 `i `uc
--> -> 249 `i `uc
--> -> 252 `i `uc
--> -> 254 `i `uc
+..
 ..
 ]
-"24
-[; ;main.c: 24: uint8_t const car[60] ={
-[v _car `Cuc ~T0 @X0 -> 60 `i e ]
-[i _car
-:U ..
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 255 `i `uc
--> -> 255 `i `uc
--> -> 255 `i `uc
--> -> 255 `i `uc
--> -> 255 `i `uc
--> -> 255 `i `uc
--> -> 255 `i `uc
--> -> 255 `i `uc
--> -> 255 `i `uc
--> -> 255 `i `uc
--> -> 255 `i `uc
--> -> 255 `i `uc
--> -> 255 `i `uc
--> -> 255 `i `uc
--> -> 255 `i `uc
--> -> 255 `i `uc
--> -> 255 `i `uc
--> -> 255 `i `uc
--> -> 255 `i `uc
--> -> 255 `i `uc
--> -> 255 `i `uc
--> -> 255 `i `uc
--> -> 255 `i `uc
--> -> 255 `i `uc
--> -> 255 `i `uc
--> -> 255 `i `uc
--> -> 255 `i `uc
--> -> 255 `i `uc
--> -> 255 `i `uc
--> -> 255 `i `uc
-..
-]
-"32
-[; ;main.c: 32: uint8_t const tri[60] ={
-[v _tri `Cuc ~T0 @X0 -> 60 `i e ]
-[i _tri
-:U ..
--> -> 9 `i `uc
--> -> 17 `i `uc
--> -> 26 `i `uc
--> -> 34 `i `uc
--> -> 43 `i `uc
--> -> 51 `i `uc
--> -> 60 `i `uc
--> -> 68 `i `uc
--> -> 77 `i `uc
--> -> 85 `i `uc
--> -> 94 `i `uc
--> -> 102 `i `uc
--> -> 111 `i `uc
--> -> 119 `i `uc
--> -> 128 `i `uc
--> -> 136 `i `uc
--> -> 145 `i `uc
--> -> 153 `i `uc
--> -> 162 `i `uc
--> -> 170 `i `uc
--> -> 179 `i `uc
--> -> 187 `i `uc
--> -> 196 `i `uc
--> -> 204 `i `uc
--> -> 213 `i `uc
--> -> 221 `i `uc
--> -> 230 `i `uc
--> -> 238 `i `uc
--> -> 247 `i `uc
--> -> 255 `i `uc
--> -> 247 `i `uc
--> -> 238 `i `uc
--> -> 230 `i `uc
--> -> 221 `i `uc
--> -> 213 `i `uc
--> -> 204 `i `uc
--> -> 196 `i `uc
--> -> 187 `i `uc
--> -> 179 `i `uc
--> -> 170 `i `uc
--> -> 162 `i `uc
--> -> 153 `i `uc
--> -> 145 `i `uc
--> -> 136 `i `uc
--> -> 128 `i `uc
--> -> 119 `i `uc
--> -> 111 `i `uc
--> -> 102 `i `uc
--> -> 94 `i `uc
--> -> 86 `i `uc
--> -> 77 `i `uc
--> -> 68 `i `uc
--> -> 60 `i `uc
--> -> 51 `i `uc
--> -> 43 `i `uc
--> -> 34 `i `uc
--> -> 26 `i `uc
--> -> 17 `i `uc
--> -> 9 `i `uc
--> -> 0 `i `uc
-..
-]
-"45
-[; ;main.c: 45: uint8_t i = 0;
-[v _i `uc ~T0 @X0 1 e ]
-[i _i
--> -> 0 `i `uc
-]
-"46
-[; ;main.c: 46: uint16_t periode = 0xEFB9;
-[v _periode `us ~T0 @X0 1 e ]
-[i _periode
--> -> 61369 `ui `us
-]
-"47
-[; ;main.c: 47: uint8_t flag = 0;
-[v _flag `uc ~T0 @X0 1 e ]
-[i _flag
--> -> 0 `i `uc
-]
-[v $root$_main `(v ~T0 @X0 0 e ]
-"52
-[; ;main.c: 52: void main(void)
-[v _main `(v ~T0 @X0 1 ef ]
-"53
-[; ;main.c: 53: {
-{
-[e :U _main ]
-[f ]
-"54
-[; ;main.c: 54:     uint8_t lecture = 'A';
-[v _lecture `uc ~T0 @X0 1 a ]
-[e = _lecture -> -> 65 `ui `uc ]
-"55
-[; ;main.c: 55:     uint8_t lettre = 'A';
-[v _lettre `uc ~T0 @X0 1 a ]
-[e = _lettre -> -> 65 `ui `uc ]
-"56
-[; ;main.c: 56:     uint8_t freq = 0;
-[v _freq `uc ~T0 @X0 1 a ]
-[e = _freq -> -> 0 `i `uc ]
-"61
-[; ;main.c: 61:     SYSTEM_Initialize();
-[e ( _SYSTEM_Initialize ..  ]
+"62
+[; ;mcc_generated_files/spi.c: 62: void SPI_Initialize(void)
+[v _SPI_Initialize `(v ~T0 @X0 1 ef ]
 "63
-[; ;main.c: 63:     (INTCONbits.GIE = 1);
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+[; ;mcc_generated_files/spi.c: 63: {
+{
+[e :U _SPI_Initialize ]
+[f ]
 "65
-[; ;main.c: 65:     (INTCONbits.PEIE = 1);
-[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
+[; ;mcc_generated_files/spi.c: 65:     SSPSTAT = 0x40;
+[e = _SSPSTAT -> -> 64 `i `uc ]
+"66
+[; ;mcc_generated_files/spi.c: 66:     SSPCON1 = 0x02;
+[e = _SSPCON1 -> -> 2 `i `uc ]
 "67
-[; ;main.c: 67:     TMR1_SetInterruptHandler(myTimer1_ISR);
-[e ( _TMR1_SetInterruptHandler (1 &U _myTimer1_ISR ]
+[; ;mcc_generated_files/spi.c: 67:     SSPADD = 0x01;
+[e = _SSPADD -> -> 1 `i `uc ]
+"68
+[; ;mcc_generated_files/spi.c: 68:     TRISCbits.TRISC3 = 0;
+[e = . . _TRISCbits 0 3 -> -> 0 `i `uc ]
 "69
-[; ;main.c: 69:     SSPCON1bits.SSPEN = 1;
-[e = . . _SSPCON1bits 0 2 -> -> 1 `i `uc ]
+[; ;mcc_generated_files/spi.c: 69:     SSPCON1bits.SSPEN = 0;
+[e = . . _SSPCON1bits 0 2 -> -> 0 `i `uc ]
 "70
-[; ;main.c: 70:     do { LATAbits.LATA5 = 1; } while(0);
-[e :U 1533 ]
-{
-[e = . . _LATAbits 0 5 -> -> 1 `i `uc ]
+[; ;mcc_generated_files/spi.c: 70: }
+[e :UE 1529 ]
 }
-[e :U 1532 ]
 "72
-[; ;main.c: 72:     while (1)
-[e :U 1535 ]
+[; ;mcc_generated_files/spi.c: 72: _Bool SPI_Open(spi_modes_t spiUniqueConfiguration)
+[v _SPI_Open `(a ~T0 @X0 1 ef1`E358 ]
 "73
-[; ;main.c: 73:     {
+[; ;mcc_generated_files/spi.c: 73: {
 {
-"99
-[; ;main.c: 99:         if(flag == 1)
-[e $ ! == -> _flag `i -> 1 `i 1537  ]
-"100
-[; ;main.c: 100:         {
+[e :U _SPI_Open ]
+"72
+[; ;mcc_generated_files/spi.c: 72: _Bool SPI_Open(spi_modes_t spiUniqueConfiguration)
+[v _spiUniqueConfiguration `E358 ~T0 @X0 1 r1 ]
+"73
+[; ;mcc_generated_files/spi.c: 73: {
+[f ]
+"74
+[; ;mcc_generated_files/spi.c: 74:     if(!SSPCON1bits.SSPEN)
+[e $ ! ! != -> . . _SSPCON1bits 0 2 `i -> 0 `i 1531  ]
+"75
+[; ;mcc_generated_files/spi.c: 75:     {
 {
-"101
-[; ;main.c: 101:             if(EUSART1_is_rx_ready()){
-[e $ ! != -> ( _EUSART1_is_rx_ready ..  `i -> 0 `i 1538  ]
-{
-"102
-[; ;main.c: 102:                 lecture = EUSART1_Read();
-[e = _lecture ( _EUSART1_Read ..  ]
-"103
-[; ;main.c: 103:                 if(lecture == '+')
-[e $ ! == -> _lecture `ui -> 43 `ui 1539  ]
-"104
-[; ;main.c: 104:                 {
-{
-"105
-[; ;main.c: 105:                     freq++;
-[e ++ _freq -> -> 1 `i `uc ]
-"106
-[; ;main.c: 106:                     if(freq >= 4)
-[e $ ! >= -> _freq `i -> 4 `i 1540  ]
-"107
-[; ;main.c: 107:                     {
-{
-"108
-[; ;main.c: 108:                         freq = 4;
-[e = _freq -> -> 4 `i `uc ]
-"109
-[; ;main.c: 109:                     }
+"76
+[; ;mcc_generated_files/spi.c: 76:         SSPSTAT = spi_configuration[spiUniqueConfiguration].stat;
+[e = _SSPSTAT . *U + &U _spi_configuration * -> _spiUniqueConfiguration `ux -> -> # *U &U _spi_configuration `ui `ux 1 ]
+"77
+[; ;mcc_generated_files/spi.c: 77:         SSPCON1 = spi_configuration[spiUniqueConfiguration].con1;
+[e = _SSPCON1 . *U + &U _spi_configuration * -> _spiUniqueConfiguration `ux -> -> # *U &U _spi_configuration `ui `ux 0 ]
+"78
+[; ;mcc_generated_files/spi.c: 78:         SSPCON2 = 0x00;
+[e = _SSPCON2 -> -> 0 `i `uc ]
+"79
+[; ;mcc_generated_files/spi.c: 79:         SSPADD = spi_configuration[spiUniqueConfiguration].add;
+[e = _SSPADD . *U + &U _spi_configuration * -> _spiUniqueConfiguration `ux -> -> # *U &U _spi_configuration `ui `ux 2 ]
+"80
+[; ;mcc_generated_files/spi.c: 80:         TRISCbits.TRISC3 = spi_configuration[spiUniqueConfiguration].operation;
+[e = . . _TRISCbits 0 3 . *U + &U _spi_configuration * -> _spiUniqueConfiguration `ux -> -> # *U &U _spi_configuration `ui `ux 3 ]
+"81
+[; ;mcc_generated_files/spi.c: 81:         SSPCON1bits.SSPEN = 1;
+[e = . . _SSPCON1bits 0 2 -> -> 1 `i `uc ]
+"82
+[; ;mcc_generated_files/spi.c: 82:         return 1;
+[e ) -> -> 1 `i `a ]
+[e $UE 1530  ]
+"83
+[; ;mcc_generated_files/spi.c: 83:     }
 }
-[e :U 1540 ]
-"110
-[; ;main.c: 110:                 }
-}
-[e $U 1541  ]
-"111
-[; ;main.c: 111:                 else if(lecture == '-')
-[e :U 1539 ]
-[e $ ! == -> _lecture `ui -> 45 `ui 1542  ]
-"112
-[; ;main.c: 112:                 {
-{
-"113
-[; ;main.c: 113:                     freq--;
-[e -- _freq -> -> 1 `i `uc ]
-"114
-[; ;main.c: 114:                     if(freq <= 0)
-[e $ ! <= -> _freq `i -> 0 `i 1543  ]
-"115
-[; ;main.c: 115:                     {
-{
-"116
-[; ;main.c: 116:                         freq = 0;
-[e = _freq -> -> 0 `i `uc ]
-"117
-[; ;main.c: 117:                     }
-}
-[e :U 1543 ]
-"118
-[; ;main.c: 118:                 }
-}
-[e $U 1544  ]
-"119
-[; ;main.c: 119:                 else
-[e :U 1542 ]
-"120
-[; ;main.c: 120:                 {
-{
-"121
-[; ;main.c: 121:                     lettre=lecture;
-[e = _lettre _lecture ]
-"122
-[; ;main.c: 122:                 }
-}
-[e :U 1544 ]
-[e :U 1541 ]
-"123
-[; ;main.c: 123:                 switch(freq)
-[e $U 1546  ]
-"124
-[; ;main.c: 124:                 {
-{
-"125
-[; ;main.c: 125:                     case 0:
-[e :U 1547 ]
-"126
-[; ;main.c: 126:                         periode=0xEFB9;
-[e = _periode -> -> 61369 `ui `us ]
-"127
-[; ;main.c: 127:                         printf("\n\r20Hz");
-[e ( _printf :s 1C ]
-"128
-[; ;main.c: 128:                         flag = 0;
-[e = _flag -> -> 0 `i `uc ]
-"129
-[; ;main.c: 129:                         break;
-[e $U 1545  ]
-"130
-[; ;main.c: 130:                     case 1:
-[e :U 1548 ]
-"131
-[; ;main.c: 131:                         periode=0xF7DD;
-[e = _periode -> -> 63453 `ui `us ]
-"132
-[; ;main.c: 132:                         printf("\n\r40Hz");
-[e ( _printf :s 2C ]
-"133
-[; ;main.c: 133:                         flag = 0;
-[e = _flag -> -> 0 `i `uc ]
-"134
-[; ;main.c: 134:                         break;
-[e $U 1545  ]
-"135
-[; ;main.c: 135:                     case 2:
-[e :U 1549 ]
-"136
-[; ;main.c: 136:                         periode=0xFA90;
-[e = _periode -> -> 64144 `ui `us ]
-"137
-[; ;main.c: 137:                         printf("\n\r60Hz");
-[e ( _printf :s 3C ]
-"138
-[; ;main.c: 138:                         flag = 0;
-[e = _flag -> -> 0 `i `uc ]
-"139
-[; ;main.c: 139:                         break;
-[e $U 1545  ]
-"140
-[; ;main.c: 140:                     case 3:
-[e :U 1550 ]
-"141
-[; ;main.c: 141:                         periode=0xFBEE;
-[e = _periode -> -> 64494 `ui `us ]
-"142
-[; ;main.c: 142:                         printf("\n\r80Hz");
-[e ( _printf :s 4C ]
-"143
-[; ;main.c: 143:                         flag = 0;
-[e = _flag -> -> 0 `i `uc ]
-"144
-[; ;main.c: 144:                         break;
-[e $U 1545  ]
-"145
-[; ;main.c: 145:                     case 4:
-[e :U 1551 ]
-"146
-[; ;main.c: 146:                         periode=0xFCBF;
-[e = _periode -> -> 64703 `ui `us ]
-"147
-[; ;main.c: 147:                         printf("\n\r100Hz");
-[e ( _printf :s 5C ]
-"148
-[; ;main.c: 148:                         flag = 0;
-[e = _flag -> -> 0 `i `uc ]
-"149
-[; ;main.c: 149:                         break;
-[e $U 1545  ]
-"150
-[; ;main.c: 150:                     default:
-[e :U 1552 ]
-"152
-[; ;main.c: 152:                         break;
-[e $U 1545  ]
-"153
-[; ;main.c: 153:                 }
-}
-[e $U 1545  ]
-[e :U 1546 ]
-[e [\ -> _freq `i , $ -> 0 `i 1547
- , $ -> 1 `i 1548
- , $ -> 2 `i 1549
- , $ -> 3 `i 1550
- , $ -> 4 `i 1551
- 1552 ]
-[e :U 1545 ]
-"154
-[; ;main.c: 154:             }
-}
-[e $U 1553  ]
-"156
-[; ;main.c: 156:             else{
-[e :U 1538 ]
-{
-"157
-[; ;main.c: 157:                 switch(lettre)
-[e $U 1555  ]
-"158
-[; ;main.c: 158:                 {
-{
-"159
-[; ;main.c: 159:                     case 's':
-[e :U 1556 ]
-"161
-[; ;main.c: 161:                         out_dig(sin[i]);
-[e ( _out_dig (1 *U + &U _sin * -> _i `ux -> -> # *U &U _sin `ui `ux ]
-"162
-[; ;main.c: 162:                         printf("\n\rs");
-[e ( _printf :s 6C ]
-"163
-[; ;main.c: 163:                         flag = 0;
-[e = _flag -> -> 0 `i `uc ]
-"164
-[; ;main.c: 164:                         break;
-[e $U 1554  ]
-"165
-[; ;main.c: 165:                     case 'c':
-[e :U 1557 ]
-"167
-[; ;main.c: 167:                         out_dig(car[i]);
-[e ( _out_dig (1 *U + &U _car * -> _i `ux -> -> # *U &U _car `ui `ux ]
-"168
-[; ;main.c: 168:                         printf("\n\rc");
-[e ( _printf :s 7C ]
-"169
-[; ;main.c: 169:                         flag = 0;
-[e = _flag -> -> 0 `i `uc ]
-"170
-[; ;main.c: 170:                         break;
-[e $U 1554  ]
-"171
-[; ;main.c: 171:                     case 't':
-[e :U 1558 ]
-"173
-[; ;main.c: 173:                         out_dig(tri[i]);
-[e ( _out_dig (1 *U + &U _tri * -> _i `ux -> -> # *U &U _tri `ui `ux ]
-"174
-[; ;main.c: 174:                         printf("\n\rt");
-[e ( _printf :s 8C ]
-"175
-[; ;main.c: 175:                         flag = 0;
-[e = _flag -> -> 0 `i `uc ]
-"176
-[; ;main.c: 176:                         break;
-[e $U 1554  ]
-"177
-[; ;main.c: 177:                     default:
-[e :U 1559 ]
-"178
-[; ;main.c: 178:                         printf("\n\rInput onde avec s,c,t");
-[e ( _printf :s 9C ]
-"179
-[; ;main.c: 179:                         break;
-[e $U 1554  ]
-"180
-[; ;main.c: 180:                 }
-}
-[e $U 1554  ]
-[e :U 1555 ]
-[e [\ -> _lettre `i , $ -> -> 115 `ui `i 1556
- , $ -> -> 99 `ui `i 1557
- , $ -> -> 116 `ui `i 1558
- 1559 ]
-[e :U 1554 ]
-"181
-[; ;main.c: 181:             }
-}
-[e :U 1553 ]
-"182
-[; ;main.c: 182:         }
-}
-[e :U 1537 ]
-"193
-[; ;main.c: 193:     }
-}
-[e :U 1534 ]
-[e $U 1535  ]
-[e :U 1536 ]
-"196
-[; ;main.c: 196: }
+[e :U 1531 ]
+"84
+[; ;mcc_generated_files/spi.c: 84:     return 0;
+[e ) -> -> 0 `i `a ]
+[e $UE 1530  ]
+"85
+[; ;mcc_generated_files/spi.c: 85: }
 [e :UE 1530 ]
 }
-"201
-[; ;main.c: 201: void myTimer1_ISR(void){
-[v _myTimer1_ISR `(v ~T0 @X0 1 ef ]
+"87
+[; ;mcc_generated_files/spi.c: 87: void SPI_Close(void)
+[v _SPI_Close `(v ~T0 @X0 1 ef ]
+"88
+[; ;mcc_generated_files/spi.c: 88: {
 {
-[e :U _myTimer1_ISR ]
+[e :U _SPI_Close ]
 [f ]
-"204
-[; ;main.c: 204:     TMR1_WriteTimer(periode);
-[e ( _TMR1_WriteTimer (1 _periode ]
-"207
-[; ;main.c: 207:     flag = 1;
-[e = _flag -> -> 1 `i `uc ]
-"208
-[; ;main.c: 208:     i++;
-[e ++ _i -> -> 1 `i `uc ]
-"209
-[; ;main.c: 209:     if (i==60){
-[e $ ! == -> _i `i -> 60 `i 1561  ]
-{
-"210
-[; ;main.c: 210:         i=0;
-[e = _i -> -> 0 `i `uc ]
-"211
-[; ;main.c: 211:     }
+"89
+[; ;mcc_generated_files/spi.c: 89:     SSPCON1bits.SSPEN = 0;
+[e = . . _SSPCON1bits 0 2 -> -> 0 `i `uc ]
+"90
+[; ;mcc_generated_files/spi.c: 90: }
+[e :UE 1532 ]
 }
-[e :U 1561 ]
-"212
-[; ;main.c: 212: }
-[e :UE 1560 ]
-}
-"247
-[; ;main.c: 247: void out_dig(uint8_t x)
-[v _out_dig `(v ~T0 @X0 1 ef1`uc ]
-"248
-[; ;main.c: 248: {
+"92
+[; ;mcc_generated_files/spi.c: 92: uint8_t SPI_ExchangeByte(uint8_t data)
+[v _SPI_ExchangeByte `(uc ~T0 @X0 1 ef1`uc ]
+"93
+[; ;mcc_generated_files/spi.c: 93: {
 {
-[e :U _out_dig ]
-"247
-[; ;main.c: 247: void out_dig(uint8_t x)
-[v _x `uc ~T0 @X0 1 r1 ]
-"248
-[; ;main.c: 248: {
+[e :U _SPI_ExchangeByte ]
+"92
+[; ;mcc_generated_files/spi.c: 92: uint8_t SPI_ExchangeByte(uint8_t data)
+[v _data `uc ~T0 @X0 1 r1 ]
+"93
+[; ;mcc_generated_files/spi.c: 93: {
 [f ]
-"249
-[; ;main.c: 249:  do { LATAbits.LATA5 = 0; } while(0);
-[e :U 1565 ]
+"94
+[; ;mcc_generated_files/spi.c: 94:     SSPBUF = data;
+[e = _SSPBUF _data ]
+"95
+[; ;mcc_generated_files/spi.c: 95:     while(!PIR1bits.SSPIF);
+[e $U 1534  ]
+[e :U 1535 ]
+[e :U 1534 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> 0 `i 1535  ]
+[e :U 1536 ]
+"96
+[; ;mcc_generated_files/spi.c: 96:     PIR1bits.SSPIF = 0;
+[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+"97
+[; ;mcc_generated_files/spi.c: 97:     return SSPBUF;
+[e ) _SSPBUF ]
+[e $UE 1533  ]
+"98
+[; ;mcc_generated_files/spi.c: 98: }
+[e :UE 1533 ]
+}
+"100
+[; ;mcc_generated_files/spi.c: 100: void SPI_ExchangeBlock(void *block, size_t blockSize)
+[v _SPI_ExchangeBlock `(v ~T0 @X0 1 ef2`*v`ui ]
+"101
+[; ;mcc_generated_files/spi.c: 101: {
 {
-[e = . . _LATAbits 0 5 -> -> 0 `i `uc ]
-}
-[e :U 1564 ]
-"250
-[; ;main.c: 250:  SPI_ExchangeByte(0x11);
-[e ( _SPI_ExchangeByte (1 -> -> 17 `i `uc ]
-"251
-[; ;main.c: 251:  SPI_ExchangeByte(x);
-[e ( _SPI_ExchangeByte (1 _x ]
-"252
-[; ;main.c: 252:  do { LATAbits.LATA5 = 1; } while(0);
-[e :U 1568 ]
+[e :U _SPI_ExchangeBlock ]
+"100
+[; ;mcc_generated_files/spi.c: 100: void SPI_ExchangeBlock(void *block, size_t blockSize)
+[v _block `*v ~T0 @X0 1 r1 ]
+[v _blockSize `ui ~T0 @X0 1 r2 ]
+"101
+[; ;mcc_generated_files/spi.c: 101: {
+[f ]
+"102
+[; ;mcc_generated_files/spi.c: 102:     uint8_t *data = block;
+[v _data `*uc ~T0 @X0 1 a ]
+[e = _data -> _block `*uc ]
+"103
+[; ;mcc_generated_files/spi.c: 103:     while(blockSize--)
+[e $U 1538  ]
+[e :U 1539 ]
+"104
+[; ;mcc_generated_files/spi.c: 104:     {
 {
-[e = . . _LATAbits 0 5 -> -> 1 `i `uc ]
+"105
+[; ;mcc_generated_files/spi.c: 105:         SSPBUF = *data;
+[e = _SSPBUF *U _data ]
+"106
+[; ;mcc_generated_files/spi.c: 106:         while(!PIR1bits.SSPIF);
+[e $U 1541  ]
+[e :U 1542 ]
+[e :U 1541 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> 0 `i 1542  ]
+[e :U 1543 ]
+"107
+[; ;mcc_generated_files/spi.c: 107:         PIR1bits.SSPIF = 0;
+[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+"108
+[; ;mcc_generated_files/spi.c: 108:         *data++ = SSPBUF;
+[e = *U ++ _data * -> -> 1 `i `x -> -> # *U _data `i `x _SSPBUF ]
+"109
+[; ;mcc_generated_files/spi.c: 109:     }
 }
-[e :U 1567 ]
-"254
-[; ;main.c: 254: }
-[e :UE 1562 ]
+[e :U 1538 ]
+"103
+[; ;mcc_generated_files/spi.c: 103:     while(blockSize--)
+[e $ != -- _blockSize -> -> 1 `i `ui -> -> 0 `i `ui 1539  ]
+[e :U 1540 ]
+"110
+[; ;mcc_generated_files/spi.c: 110: }
+[e :UE 1537 ]
 }
-[p f _printf 8388608 ]
-[a 4C 10 13 56 48 72 122 0 ]
-[a 3C 10 13 54 48 72 122 0 ]
-[a 2C 10 13 52 48 72 122 0 ]
-[a 1C 10 13 50 48 72 122 0 ]
-[a 5C 10 13 49 48 48 72 122 0 ]
-[a 9C 10 13 73 110 112 117 116 32 111 110 100 101 32 97 118 101 99 32 115 44 99 44 116 0 ]
-[a 8C 10 13 116 0 ]
-[a 6C 10 13 115 0 ]
-[a 7C 10 13 99 0 ]
+"113
+[; ;mcc_generated_files/spi.c: 113: void SPI_WriteBlock(void *block, size_t blockSize)
+[v _SPI_WriteBlock `(v ~T0 @X0 1 ef2`*v`ui ]
+"114
+[; ;mcc_generated_files/spi.c: 114: {
+{
+[e :U _SPI_WriteBlock ]
+"113
+[; ;mcc_generated_files/spi.c: 113: void SPI_WriteBlock(void *block, size_t blockSize)
+[v _block `*v ~T0 @X0 1 r1 ]
+[v _blockSize `ui ~T0 @X0 1 r2 ]
+"114
+[; ;mcc_generated_files/spi.c: 114: {
+[f ]
+"115
+[; ;mcc_generated_files/spi.c: 115:     uint8_t *data = block;
+[v _data `*uc ~T0 @X0 1 a ]
+[e = _data -> _block `*uc ]
+"116
+[; ;mcc_generated_files/spi.c: 116:     while(blockSize--)
+[e $U 1545  ]
+[e :U 1546 ]
+"117
+[; ;mcc_generated_files/spi.c: 117:     {
+{
+"118
+[; ;mcc_generated_files/spi.c: 118:         SPI_ExchangeByte(*data++);
+[e ( _SPI_ExchangeByte (1 *U ++ _data * -> -> 1 `i `x -> -> # *U _data `i `x ]
+"119
+[; ;mcc_generated_files/spi.c: 119:     }
+}
+[e :U 1545 ]
+"116
+[; ;mcc_generated_files/spi.c: 116:     while(blockSize--)
+[e $ != -- _blockSize -> -> 1 `i `ui -> -> 0 `i `ui 1546  ]
+[e :U 1547 ]
+"120
+[; ;mcc_generated_files/spi.c: 120: }
+[e :UE 1544 ]
+}
+"122
+[; ;mcc_generated_files/spi.c: 122: void SPI_ReadBlock(void *block, size_t blockSize)
+[v _SPI_ReadBlock `(v ~T0 @X0 1 ef2`*v`ui ]
+"123
+[; ;mcc_generated_files/spi.c: 123: {
+{
+[e :U _SPI_ReadBlock ]
+"122
+[; ;mcc_generated_files/spi.c: 122: void SPI_ReadBlock(void *block, size_t blockSize)
+[v _block `*v ~T0 @X0 1 r1 ]
+[v _blockSize `ui ~T0 @X0 1 r2 ]
+"123
+[; ;mcc_generated_files/spi.c: 123: {
+[f ]
+"124
+[; ;mcc_generated_files/spi.c: 124:     uint8_t *data = block;
+[v _data `*uc ~T0 @X0 1 a ]
+[e = _data -> _block `*uc ]
+"125
+[; ;mcc_generated_files/spi.c: 125:     while(blockSize--)
+[e $U 1549  ]
+[e :U 1550 ]
+"126
+[; ;mcc_generated_files/spi.c: 126:     {
+{
+"127
+[; ;mcc_generated_files/spi.c: 127:         *data++ = SPI_ExchangeByte(0);
+[e = *U ++ _data * -> -> 1 `i `x -> -> # *U _data `i `x ( _SPI_ExchangeByte (1 -> -> 0 `i `uc ]
+"128
+[; ;mcc_generated_files/spi.c: 128:     }
+}
+[e :U 1549 ]
+"125
+[; ;mcc_generated_files/spi.c: 125:     while(blockSize--)
+[e $ != -- _blockSize -> -> 1 `i `ui -> -> 0 `i `ui 1550  ]
+[e :U 1551 ]
+"129
+[; ;mcc_generated_files/spi.c: 129: }
+[e :UE 1548 ]
+}
+"131
+[; ;mcc_generated_files/spi.c: 131: void SPI_WriteByte(uint8_t byte)
+[v _SPI_WriteByte `(v ~T0 @X0 1 ef1`uc ]
+"132
+[; ;mcc_generated_files/spi.c: 132: {
+{
+[e :U _SPI_WriteByte ]
+"131
+[; ;mcc_generated_files/spi.c: 131: void SPI_WriteByte(uint8_t byte)
+[v _byte `uc ~T0 @X0 1 r1 ]
+"132
+[; ;mcc_generated_files/spi.c: 132: {
+[f ]
+"133
+[; ;mcc_generated_files/spi.c: 133:     SSPBUF = byte;
+[e = _SSPBUF _byte ]
+"134
+[; ;mcc_generated_files/spi.c: 134: }
+[e :UE 1552 ]
+}
+"136
+[; ;mcc_generated_files/spi.c: 136: uint8_t SPI_ReadByte(void)
+[v _SPI_ReadByte `(uc ~T0 @X0 1 ef ]
+"137
+[; ;mcc_generated_files/spi.c: 137: {
+{
+[e :U _SPI_ReadByte ]
+[f ]
+"138
+[; ;mcc_generated_files/spi.c: 138:     return SSPBUF;
+[e ) _SSPBUF ]
+[e $UE 1553  ]
+"139
+[; ;mcc_generated_files/spi.c: 139: }
+[e :UE 1553 ]
+}
