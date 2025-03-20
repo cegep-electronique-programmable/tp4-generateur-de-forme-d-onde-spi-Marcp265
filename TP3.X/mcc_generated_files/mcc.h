@@ -52,6 +52,10 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <conio.h>
+#include "interrupt_manager.h"
+#include "spi.h"
+#include "tmr1.h"
+#include "eusart1.h"
 
 
 
