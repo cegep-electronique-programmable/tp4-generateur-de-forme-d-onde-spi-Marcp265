@@ -43,7 +43,7 @@ void out_dig(uint8_t x);
 //void triangle_60(void);
 void myTimer1_ISR(void);
 uint8_t i = 0; //global counter
-uint16_t periode = 0xEFB9;
+uint16_t periode = 0xEFB9; //periode de TMR1
 uint8_t flag = 0;
 
 /*
@@ -51,8 +51,8 @@ uint8_t flag = 0;
  */
 void main(void)
 {
-    uint8_t lecture = 'A';
-    uint8_t lettre = 'A';
+    uint8_t lecture = 0;
+    uint8_t onde = 0;
     uint8_t freq = 0;
     
     
@@ -118,7 +118,7 @@ void main(void)
                 }
                 else
                 {
-                    lettre=lecture;
+                    onde=lecture;
                 }
                 switch(freq)
                 {
@@ -148,13 +148,13 @@ void main(void)
                         flag = 0;
                         break;
                     default:
-
+                        
                         break;
                 }
             }
 
             else{         
-                switch(lettre)
+                switch(onde)
                 {
                     case 's':
                         //sinus_60();
@@ -204,7 +204,7 @@ void myTimer1_ISR(void){
     TMR1_WriteTimer(periode);
     
     //out_dig(sin[i]);
-    flag = 1;
+    flag = 1; //raise flag
     i++;
     if (i==MAX){
         i=0;
